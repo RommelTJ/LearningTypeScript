@@ -1,1 +1,1 @@
-console.log("TODO: Add some code.");
+console.log("TODO: Add some code!");
