@@ -5,5 +5,10 @@ function add(n1: number, n2: number): number {
 const number1 = 5;
 const number2 = 2.8;
 
+// Basic Types:
+// - number
+// - string
+// - boolean
+
 const result = add(number1, number2);
 console.log("result: ", result);
