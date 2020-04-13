@@ -5,10 +5,11 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string): numbe
   return n1 + n2;
 }
 
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
+let number1: number;
+number1 = 5;
+const number2 = 2.8; // number type assignment is inferred
+const printResult = true; // boolean type assignment is inferred
+const resultPhrase = 'Result is: '; // string type assignment is inferred
 
 // Basic Types:
 // - number

@@ -4,10 +4,11 @@ function add(n1, n2, showResult, phrase) {
     }
     return n1 + n2;
 }
-var number1 = 5;
-var number2 = 2.8;
-var printResult = true;
-var resultPhrase = 'Result is: ';
+var number1;
+number1 = 5;
+var number2 = 2.8; // number type assignment is inferred
+var printResult = true; // boolean type assignment is inferred
+var resultPhrase = 'Result is: '; // string type assignment is inferred
 // Basic Types:
 // - number
 // - string
