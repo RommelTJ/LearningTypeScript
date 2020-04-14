@@ -1,9 +1,9 @@
-// const person: {
-//   name: string,
-//   age: number
-// } = {
-
-const person = {
+const person: {
+  name: string,
+  age: number,
+  hobbies: string[],
+  role: [number, string] // tuple
+} = {
   name: "Rommel",
   age: 32,
   hobbies: ["Sports", "Cooking"],
@@ -11,8 +11,8 @@ const person = {
 };
 
 // Danger
-person.role.push('admin');
-person.role[1] = 10;
+// person.role.push('admin');
+// person.role[1] = 10;
 // End Danger
 
 let favoriteActivities: string[];
