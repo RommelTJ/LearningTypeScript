@@ -4,10 +4,6 @@ var person = {
     hobbies: ["Sports", "Cooking"],
     role: [2, 'author']
 };
-// Danger
-person.role.push('admin');
-person.role[1] = 10;
-// End Danger
 var favoriteActivities;
 favoriteActivities = ["Sports"];
 console.log("Person: ", person);

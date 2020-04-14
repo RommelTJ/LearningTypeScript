@@ -10,11 +10,6 @@ const person: {
   role: [2, 'author']
 };
 
-// Danger
-person.role.push('admin');
-person.role[1] = 10;
-// End Danger
-
 let favoriteActivities: string[];
 favoriteActivities = ["Sports"];
 
