@@ -6,3 +6,8 @@ userInput = "Max";
 if (typeof userInput === 'string') {
     username = userInput; // allowed because of the type check. Better than 'any'.
 }
+// This function "never" returns.
+function generateError(message, code) {
+    throw { message: message, errorCode: code };
+}
+generateError('An error occurred!', 500);
