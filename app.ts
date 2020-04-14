@@ -9,4 +9,6 @@ const person = {
   hobbies: ["Sports", "Cooking"]
 };
 
+let favoriteActivities: string[];
+
 console.log("Person: ", person);
