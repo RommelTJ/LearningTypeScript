@@ -15,6 +15,6 @@ favoriteActivities = ["Sports"];
 console.log("Person: ", person);
 
 for (const hobby of person.hobbies) {
-  console.log("hobby: ", hobby);
+  // TS knows hobby will be a string.
+  console.log("hobby: ", hobby.toUpperCase());
 }
-
