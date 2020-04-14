@@ -11,8 +11,8 @@ const person: {
 };
 
 // Danger
-// person.role.push('admin');
-// person.role[1] = 10;
+person.role.push('admin');
+person.role[1] = 10;
 // End Danger
 
 let favoriteActivities: string[];
