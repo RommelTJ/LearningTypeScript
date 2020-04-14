@@ -4,8 +4,15 @@ function add(n1, n2) {
 function printResult(num) {
     console.log("Result: ", num);
 }
+function addAndHandle(n1, n2, callback) {
+    var result = n1 + n2;
+    callback(result);
+}
 printResult(add(5, 12));
 // let combineValues: Function;
 var combineValues;
 combineValues = add;
 console.log(combineValues(8, 8));
+addAndHandle(10, 20, function (result) {
+    console.log("Got result: ", result);
+});
