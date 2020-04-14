@@ -6,8 +6,14 @@
 const person = {
   name: "Rommel",
   age: 32,
-  hobbies: ["Sports", "Cooking"]
+  hobbies: ["Sports", "Cooking"],
+  role: [2, 'author']
 };
+
+// Danger
+person.role.push('admin');
+person.role[1] = 10;
+// End Danger
 
 let favoriteActivities: string[];
 favoriteActivities = ["Sports"];
