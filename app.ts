@@ -9,7 +9,12 @@ const person = {
   hobbies: ["Sports", "Cooking"]
 };
 
-let favoriteActivities: any[];
-favoriteActivities = ["Sports", 1];
+let favoriteActivities: string[];
+favoriteActivities = ["Sports"];
 
 console.log("Person: ", person);
+
+for (const hobby of person.hobbies) {
+  console.log("hobby: ", hobby);
+}
+
