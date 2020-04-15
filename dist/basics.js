@@ -7,12 +7,8 @@ function add(n1, n2, showResult, phrase) {
 }
 let number1;
 number1 = 5;
-const number2 = 2.8; // number type assignment is inferred
-const printResult1 = true; // boolean type assignment is inferred
-const resultPhrase = 'Result is: '; // string type assignment is inferred
-// Basic Types:
-// - number
-// - string
-// - boolean
+const number2 = 2.8;
+const printResult1 = true;
+const resultPhrase = 'Result is: ';
 const result = add(number1, number2, printResult1, resultPhrase);
 console.log("result: ", result);

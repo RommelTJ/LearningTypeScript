@@ -10,7 +10,6 @@ function addAndHandle(n1, n2, callback) {
     callback(result);
 }
 printResult(add1(5, 12));
-// let combineValues: Function;
 let combineValues;
 combineValues = add1;
 console.log(combineValues(8, 8));
