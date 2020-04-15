@@ -62,7 +62,10 @@
 
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
-  }
+  },
+  "files": [
+    "app.ts" // like include, but you can't include folders, just files.
+  ]
   //,
 //  "include": [
 //    "app.ts"
