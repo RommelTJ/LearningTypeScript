@@ -6,14 +6,14 @@ function printResult(num) {
     console.log("Result: ", num);
 }
 function addAndHandle(n1, n2, callback) {
-    var result = n1 + n2;
+    const result = n1 + n2;
     callback(result);
 }
 printResult(add1(5, 12));
 // let combineValues: Function;
-var combineValues;
+let combineValues;
 combineValues = add1;
 console.log(combineValues(8, 8));
-addAndHandle(10, 20, function (result) {
+addAndHandle(10, 20, (result) => {
     console.log("Got result: ", result);
 });

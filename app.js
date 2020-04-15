@@ -1,6 +1,6 @@
 "use strict";
-var userInput;
-var username;
+let userInput;
+let username;
 userInput = 5;
 userInput = "Rommel";
 // username = userInput; // not allowed because it's unknown, but if it were 'any' it would work.

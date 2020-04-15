@@ -16,17 +16,16 @@ var Role;
     Role[Role["READ_ONLY"] = 1] = "READ_ONLY";
     Role[Role["AUTHOR"] = 2] = "AUTHOR";
 })(Role || (Role = {}));
-var person = {
+const person = {
     name: "Rommel",
     age: 32,
     hobbies: ["Sports", "Cooking"],
     role: Role.ADMIN
 };
-var favoriteActivities;
+let favoriteActivities;
 favoriteActivities = ["Sports"];
 console.log("Person: ", person);
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
+for (const hobby of person.hobbies) {
     // TS knows hobby will be a string.
     console.log("hobby: ", hobby.toUpperCase());
 }
