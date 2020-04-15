@@ -2,7 +2,7 @@ let userInput: unknown;
 let username: string;
 
 userInput = 5;
-userInput = "Max";
+userInput = "Rommel";
 // username = userInput; // not allowed because it's unknown, but if it were 'any' it would work.
 
 if (typeof userInput === 'string') {
