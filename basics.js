@@ -16,4 +16,3 @@ const resultPhrase = 'Result is: '; // string type assignment is inferred
 // - boolean
 const result = add(number1, number2, printResult1, resultPhrase);
 console.log("result: ", result);
-//# sourceMappingURL=basics.js.map
