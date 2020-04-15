@@ -62,9 +62,11 @@
 
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
-  },
-  "exclude": [
-    "**/*.dev.ts",
-    "node_modules"
-  ]
+  }
+  //,
+//  "exclude": [
+//    "analytics.ts",
+//    "**/*.dev.ts",
+//    "node_modules" // would be the default
+//  ]
 }
