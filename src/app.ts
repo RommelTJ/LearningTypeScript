@@ -1,6 +1,6 @@
 const userName = "Rommel";
-let age = 30;
-age = 29;
+// let age = 30;
+// age = 29;
 
 // var lets you used in global or function scope.
 // let result;
@@ -36,7 +36,7 @@ activeHobbies.push(...hobbies);
 console.log("activeHobbies: ", activeHobbies);
 
 const person = {
-  name: "Rommel",
+  nickname: "Rommel",
   age: 32
 };
 
@@ -58,3 +58,7 @@ const [hobby1, hobby2, ...remainingHobbies] = hobbies;
 console.log("hobby1: ", hobby1);
 console.log("hobby2: ", hobby2);
 console.log("remainingHobbies: ", remainingHobbies);
+
+const {nickname, age} = person;
+console.log("nickname: ", nickname);
+console.log("age: ", age);
