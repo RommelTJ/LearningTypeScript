@@ -16,17 +16,17 @@ age = 29;
 // console.log(isOld); // can't access it now.
 
 // default arguments have to be last on the list.
-const add = (a: number, b: number = 1) => a + b;
-
-console.log("add 2 + default: ", add(2));
-
-const printOutput: (a: number | string) => void = output => console.log(output);
-const button = document.querySelector('button');
-if (button) {
-  button.addEventListener('click', e => console.log(e));
-}
-
-printOutput(add(1));
+// const add = (a: number, b: number = 1) => a + b;
+//
+// console.log("add 2 + default: ", add(2));
+//
+// const printOutput: (a: number | string) => void = output => console.log(output);
+// const button = document.querySelector('button');
+// if (button) {
+//   button.addEventListener('click', e => console.log(e));
+// }
+//
+// printOutput(add(1));
 
 const hobbies = ["Sports", "Cooking"];
 console.log(hobbies[0]);
@@ -42,3 +42,12 @@ const person = {
 
 const copiedPerson = {...person};
 console.log("copiedPerson: ", copiedPerson);
+
+const add = (...numbers: number[]) => {
+  return numbers.reduce((curResult, curValue) => {
+    return curResult + curValue;
+  }, 0);
+};
+
+const addedNumbers = add(5, 10, 2, 3.7);
+console.log("addedNumbers: ", addedNumbers);

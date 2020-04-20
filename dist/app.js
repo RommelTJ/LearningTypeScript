@@ -2,14 +2,6 @@
 const userName = "Rommel";
 let age = 30;
 age = 29;
-const add = (a, b = 1) => a + b;
-console.log("add 2 + default: ", add(2));
-const printOutput = output => console.log(output);
-const button = document.querySelector('button');
-if (button) {
-    button.addEventListener('click', e => console.log(e));
-}
-printOutput(add(1));
 const hobbies = ["Sports", "Cooking"];
 console.log(hobbies[0]);
 const activeHobbies = ["Hiking"];
@@ -21,3 +13,10 @@ const person = {
 };
 const copiedPerson = Object.assign({}, person);
 console.log("copiedPerson: ", copiedPerson);
+const add = (...numbers) => {
+    return numbers.reduce((curResult, curValue) => {
+        return curResult + curValue;
+    }, 0);
+};
+const addedNumbers = add(5, 10, 2, 3.7);
+console.log("addedNumbers: ", addedNumbers);
