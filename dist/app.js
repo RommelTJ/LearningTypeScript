@@ -15,3 +15,9 @@ console.log(hobbies[0]);
 const activeHobbies = ["Hiking"];
 activeHobbies.push(...hobbies);
 console.log("activeHobbies: ", activeHobbies);
+const person = {
+    name: "Rommel",
+    age: 32
+};
+const copiedPerson = Object.assign({}, person);
+console.log("copiedPerson: ", copiedPerson);
