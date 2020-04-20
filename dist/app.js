@@ -10,3 +10,8 @@ if (button) {
     button.addEventListener('click', e => console.log(e));
 }
 printOutput(add(1));
+const hobbies = ["Sports", "Cooking"];
+console.log(hobbies[0]);
+const activeHobbies = ["Hiking"];
+activeHobbies.push(...hobbies);
+console.log("activeHobbies: ", activeHobbies);

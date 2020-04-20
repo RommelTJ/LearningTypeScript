@@ -27,3 +27,10 @@ if (button) {
 }
 
 printOutput(add(1));
+
+const hobbies = ["Sports", "Cooking"];
+console.log(hobbies[0]);
+const activeHobbies = ["Hiking"];
+// activeHobbies.push(hobbies[0], hobbies[1]);
+activeHobbies.push(...hobbies);
+console.log("activeHobbies: ", activeHobbies);
