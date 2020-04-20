@@ -22,6 +22,6 @@ const [hobby1, hobby2, ...remainingHobbies] = hobbies;
 console.log("hobby1: ", hobby1);
 console.log("hobby2: ", hobby2);
 console.log("remainingHobbies: ", remainingHobbies);
-const { nickname, age } = person;
-console.log("nickname: ", nickname);
+const { nickname: username, age } = person;
+console.log("username: ", username);
 console.log("age: ", age);
