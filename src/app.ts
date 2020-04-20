@@ -15,9 +15,10 @@ age = 29;
 // }
 // console.log(isOld); // can't access it now.
 
-const add = (a: number, b: number) => a + b;
+// default arguments have to be last on the list.
+const add = (a: number, b: number = 1) => a + b;
 
-console.log("add 2 + 7: ", add(2, 7));
+console.log("add 2 + default: ", add(2));
 
 const printOutput: (a: number | string) => void = output => console.log(output);
 const button = document.querySelector('button');
@@ -25,4 +26,4 @@ if (button) {
   button.addEventListener('click', e => console.log(e));
 }
 
-printOutput(add(1, 2));
+printOutput(add(1));
