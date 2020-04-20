@@ -18,3 +18,11 @@ age = 29;
 const add = (a: number, b: number) => a + b;
 
 console.log("add 2 + 7: ", add(2, 7));
+
+const printOutput: (a: number | string) => void = output => console.log(output);
+const button = document.querySelector('button');
+if (button) {
+  button.addEventListener('click', e => console.log(e));
+}
+
+printOutput(add(1, 2));
