@@ -51,3 +51,10 @@ const add = (...numbers: number[]) => {
 
 const addedNumbers = add(5, 10, 2, 3.7);
 console.log("addedNumbers: ", addedNumbers);
+
+// const hobby1 = hobbies[0];
+// const hobby2 = hobbies[1];
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+console.log("hobby1: ", hobby1);
+console.log("hobby2: ", hobby2);
+console.log("remainingHobbies: ", remainingHobbies);
