@@ -13,3 +13,6 @@ class Department {
 
 const accountingDept = new Department("Accounting");
 accountingDept.describe();
+
+const accountingCopy = { describe: accountingDept.describe };
+accountingCopy.describe(); // undefined
