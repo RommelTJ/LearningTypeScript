@@ -5,7 +5,11 @@ class Department {
     this.name = n;
   }
 
+  describe() {
+    console.log("Department: ", this.name);
+  }
+
 }
 
 const accountingDept = new Department("Accounting");
-console.log("accounting: ", accountingDept);
+accountingDept.describe();
