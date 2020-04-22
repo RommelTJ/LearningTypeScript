@@ -5,14 +5,14 @@ class Department {
     this.name = n;
   }
 
-  describe() {
+  describe(this: Department) { // Using a TypeScript hint
     console.log("Department: ", this.name);
   }
 
 }
 
 const accountingDept = new Department("Accounting");
-accountingDept.describe();
+accountingDept.describe(); // "this" is not a parameter.
 
-const accountingCopy = { describe: accountingDept.describe };
-accountingCopy.describe(); // undefined
+// const accountingCopy = { describe: accountingDept.describe };
+// accountingCopy.describe(); // undefined
