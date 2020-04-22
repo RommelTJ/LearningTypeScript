@@ -1,6 +1,6 @@
 class Department {
-  name: string;
-  employees: string[] = [];
+  name: string; // default public
+  private employees: string[] = [];
 
   constructor(n: string) {
     this.name = n;
@@ -10,7 +10,7 @@ class Department {
     console.log("Department: ", this.name);
   }
 
-  addEmployee(employee: string) {
+  public addEmployee(employee: string) { // public is default
     this.employees.push(employee);
   }
 
@@ -25,5 +25,7 @@ accountingDept.describe(); // "this" is not a parameter.
 
 accountingDept.addEmployee("Rommel");
 accountingDept.addEmployee("Liza");
+
+// accountingDept.employees[2] = "Anna"; // Bad
 
 accountingDept.printEmployeeInformation();
