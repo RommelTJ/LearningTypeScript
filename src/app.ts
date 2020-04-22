@@ -4,7 +4,7 @@ class Department {
   private employees: string[] = [];
 
   // Using shorthand.
-  constructor(private id: string, public name: string) {
+  constructor(private readonly id: string, public name: string) {
   }
 
   describe(this: Department) { // Using a TypeScript hint
