@@ -1,16 +1,17 @@
 class Department {
-  name: string; // default public
+  // private id: string;
+  // private name: string; // default public
   private employees: string[] = [];
 
-  constructor(n: string) {
-    this.name = n;
+  // Using shorthand.
+  constructor(private id: string, public name: string) {
   }
 
   describe(this: Department) { // Using a TypeScript hint
-    console.log("Department: ", this.name);
+    console.log(`Department: ${this.id} - ${this.name}`);
   }
 
-  public addEmployee(employee: string) { // public is default
+  addEmployee(employee: string) {
     this.employees.push(employee);
   }
 
@@ -20,7 +21,7 @@ class Department {
   }
 }
 
-const accountingDept = new Department("Accounting");
+const accountingDept = new Department("d1", "Accounting");
 accountingDept.describe(); // "this" is not a parameter.
 
 accountingDept.addEmployee("Rommel");
