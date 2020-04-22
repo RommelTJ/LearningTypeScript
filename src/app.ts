@@ -14,5 +14,5 @@ class Department {
 const accountingDept = new Department("Accounting");
 accountingDept.describe(); // "this" is not a parameter.
 
-// const accountingCopy = { describe: accountingDept.describe };
-// accountingCopy.describe(); // undefined
+const accountingCopy = { name: "Test", describe: accountingDept.describe };
+accountingCopy.describe(); // ok!
