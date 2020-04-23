@@ -1,7 +1,8 @@
 class Department {
   // private id: string;
   // private name: string; // default public
-  private employees: string[] = [];
+  // private employees: string[] = [];
+  protected employees: string[] = [];
 
   // Using shorthand.
   constructor(private readonly id: string, public name: string) {
@@ -40,6 +41,14 @@ class AccountingDepartment extends Department {
     console.log("Reports: ", this.reports);
   }
 
+  // overriding
+  addEmployee(employee: string) {
+    if (employee === "Rommel") {
+      return;
+    }
+    this.employees.push(employee);
+  }
+
 }
 
 const itDept = new ITDepartment("d1", ["Rommel"]);
@@ -57,3 +66,7 @@ const acctDept = new AccountingDepartment("d2", []);
 acctDept.addReport("TPS Report");
 acctDept.addReport("HR Report");
 acctDept.printReports();
+acctDept.printEmployeeInformation();
+acctDept.addEmployee("Test1");
+acctDept.addEmployee("Rommel");
+acctDept.printEmployeeInformation();

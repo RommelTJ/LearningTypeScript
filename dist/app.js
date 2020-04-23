@@ -33,6 +33,12 @@ class AccountingDepartment extends Department {
     printReports() {
         console.log("Reports: ", this.reports);
     }
+    addEmployee(employee) {
+        if (employee === "Rommel") {
+            return;
+        }
+        this.employees.push(employee);
+    }
 }
 const itDept = new ITDepartment("d1", ["Rommel"]);
 itDept.describe();
@@ -44,3 +50,7 @@ const acctDept = new AccountingDepartment("d2", []);
 acctDept.addReport("TPS Report");
 acctDept.addReport("HR Report");
 acctDept.printReports();
+acctDept.printEmployeeInformation();
+acctDept.addEmployee("Test1");
+acctDept.addEmployee("Rommel");
+acctDept.printEmployeeInformation();
