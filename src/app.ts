@@ -27,6 +27,21 @@ class ITDepartment extends Department {
   }
 }
 
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log("Reports: ", this.reports);
+  }
+
+}
+
 const itDept = new ITDepartment("d1", ["Rommel"]);
 itDept.describe(); // "this" is not a parameter.
 
@@ -37,3 +52,8 @@ itDept.addEmployee("Liza");
 
 itDept.printEmployeeInformation();
 console.log(itDept);
+
+const acctDept = new AccountingDepartment("d2", []);
+acctDept.addReport("TPS Report");
+acctDept.addReport("HR Report");
+acctDept.printReports();
