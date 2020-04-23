@@ -16,7 +16,9 @@ class Department {
         console.log("employees: ", this.employees);
     }
 }
-const accountingDept = new Department("d1", "Accounting");
+class ITDepartment extends Department {
+}
+const accountingDept = new ITDepartment("d1", "Accounting");
 accountingDept.describe();
 accountingDept.addEmployee("Rommel");
 accountingDept.addEmployee("Liza");

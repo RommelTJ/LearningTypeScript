@@ -21,7 +21,11 @@ class Department {
   }
 }
 
-const accountingDept = new Department("d1", "Accounting");
+class ITDepartment extends Department {
+
+}
+
+const accountingDept = new ITDepartment("d1", "Accounting");
 accountingDept.describe(); // "this" is not a parameter.
 
 accountingDept.addEmployee("Rommel");
