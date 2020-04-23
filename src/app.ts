@@ -22,15 +22,18 @@ class Department {
 }
 
 class ITDepartment extends Department {
-
+  constructor(id: string, public admins: string[]) {
+    super(id, "IT");
+  }
 }
 
-const accountingDept = new ITDepartment("d1", "Accounting");
-accountingDept.describe(); // "this" is not a parameter.
+const itDept = new ITDepartment("d1", ["Rommel"]);
+itDept.describe(); // "this" is not a parameter.
 
-accountingDept.addEmployee("Rommel");
-accountingDept.addEmployee("Liza");
+itDept.addEmployee("Rommel");
+itDept.addEmployee("Liza");
 
 // accountingDept.employees[2] = "Anna"; // Bad
 
-accountingDept.printEmployeeInformation();
+itDept.printEmployeeInformation();
+console.log(itDept);

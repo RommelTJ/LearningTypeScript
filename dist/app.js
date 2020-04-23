@@ -17,9 +17,14 @@ class Department {
     }
 }
 class ITDepartment extends Department {
+    constructor(id, admins) {
+        super(id, "IT");
+        this.admins = admins;
+    }
 }
-const accountingDept = new ITDepartment("d1", "Accounting");
-accountingDept.describe();
-accountingDept.addEmployee("Rommel");
-accountingDept.addEmployee("Liza");
-accountingDept.printEmployeeInformation();
+const itDept = new ITDepartment("d1", ["Rommel"]);
+itDept.describe();
+itDept.addEmployee("Rommel");
+itDept.addEmployee("Liza");
+itDept.printEmployeeInformation();
+console.log(itDept);
