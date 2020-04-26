@@ -33,6 +33,11 @@ class AccountingDepartment extends Department {
             return this.lastReport;
         throw new Error("No report found.");
     }
+    set mostRecentReport(text) {
+        if (!text)
+            throw new Error("Please pass a valid value.");
+        this.addReport(text);
+    }
     addReport(text) {
         this.reports.push(text);
         this.lastReport = text;
@@ -54,7 +59,7 @@ itDept.addEmployee("Liza");
 itDept.printEmployeeInformation();
 console.log(itDept);
 const acctDept = new AccountingDepartment("d2", []);
-acctDept.addReport("TPS Report");
+acctDept.mostRecentReport = "TPS Report2";
 console.log("Most recent", acctDept.mostRecentReport);
 acctDept.addReport("HR Report");
 console.log("Most recent", acctDept.mostRecentReport);
