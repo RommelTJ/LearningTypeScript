@@ -2,10 +2,15 @@ class Department {
   // private id: string;
   // private name: string; // default public
   // private employees: string[] = [];
+  static fiscalYear = 2020;
   protected employees: string[] = [];
 
   // Using shorthand.
   constructor(private readonly id: string, public name: string) {
+  }
+
+  static createEmployee(name: string) {
+    return {name};
   }
 
   describe(this: Department) { // Using a TypeScript hint
@@ -66,9 +71,13 @@ class AccountingDepartment extends Department {
 }
 
 const itDept = new ITDepartment("d1", ["Rommel"]);
+
 itDept.describe(); // "this" is not a parameter.
 
-itDept.addEmployee("Rommel");
+const employee1 = Department.createEmployee("Rommel");
+console.log("emp1: ", employee1);
+console.log("fiscal year: ", Department.fiscalYear);
+itDept.addEmployee(employee1.name);
 itDept.addEmployee("Liza");
 
 // accountingDept.employees[2] = "Anna"; // Bad
