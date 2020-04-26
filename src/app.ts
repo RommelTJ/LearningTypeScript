@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   // private id: string;
   // private name: string; // default public
   // private employees: string[] = [];
@@ -6,16 +6,15 @@ class Department {
   protected employees: string[] = [];
 
   // Using shorthand.
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
   }
 
   static createEmployee(name: string) {
     return {name};
   }
 
-  describe(this: Department) { // Using a TypeScript hint
-    console.log(`Department: ${this.id} - ${this.name}`);
-  }
+  // Using a TypeScript hint
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -30,6 +29,10 @@ class Department {
 class ITDepartment extends Department {
   constructor(id: string, public admins: string[]) {
     super(id, "IT");
+  }
+
+  describe() {
+    console.log(`IT Department ID: ${this.id}`);
   }
 }
 
@@ -49,6 +52,10 @@ class AccountingDepartment extends Department {
   set mostRecentReport(text: string) {
     if (!text) throw new Error ("Please pass a valid value.");
     this.addReport(text);
+  }
+
+  describe() {
+    console.log("Accounting Department ID: ", this.id);
   }
 
   addReport(text: string) {
@@ -79,11 +86,12 @@ console.log("emp1: ", employee1);
 console.log("fiscal year: ", Department.fiscalYear);
 itDept.addEmployee(employee1.name);
 itDept.addEmployee("Liza");
+itDept.describe();
 
 // accountingDept.employees[2] = "Anna"; // Bad
 
-itDept.printEmployeeInformation();
-console.log(itDept);
+// itDept.printEmployeeInformation();
+// console.log(itDept);
 
 const acctDept = new AccountingDepartment("d2", []);
 // console.log("Most recent", acctDept.mostRecentReport); throws Error.
@@ -92,8 +100,9 @@ acctDept.mostRecentReport = "TPS Report2";
 console.log("Most recent", acctDept.mostRecentReport);
 acctDept.addReport("HR Report");
 console.log("Most recent", acctDept.mostRecentReport);
-acctDept.printReports();
-acctDept.printEmployeeInformation();
+// acctDept.printReports();
+// acctDept.printEmployeeInformation();
+acctDept.describe();
 acctDept.addEmployee("Test1");
 acctDept.addEmployee("Rommel");
 acctDept.printEmployeeInformation();

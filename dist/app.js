@@ -8,9 +8,6 @@ class Department {
     static createEmployee(name) {
         return { name };
     }
-    describe() {
-        console.log(`Department: ${this.id} - ${this.name}`);
-    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -24,6 +21,9 @@ class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, "IT");
         this.admins = admins;
+    }
+    describe() {
+        console.log(`IT Department ID: ${this.id}`);
     }
 }
 class AccountingDepartment extends Department {
@@ -41,6 +41,9 @@ class AccountingDepartment extends Department {
         if (!text)
             throw new Error("Please pass a valid value.");
         this.addReport(text);
+    }
+    describe() {
+        console.log("Accounting Department ID: ", this.id);
     }
     addReport(text) {
         this.reports.push(text);
@@ -63,15 +66,13 @@ console.log("emp1: ", employee1);
 console.log("fiscal year: ", Department.fiscalYear);
 itDept.addEmployee(employee1.name);
 itDept.addEmployee("Liza");
-itDept.printEmployeeInformation();
-console.log(itDept);
+itDept.describe();
 const acctDept = new AccountingDepartment("d2", []);
 acctDept.mostRecentReport = "TPS Report2";
 console.log("Most recent", acctDept.mostRecentReport);
 acctDept.addReport("HR Report");
 console.log("Most recent", acctDept.mostRecentReport);
-acctDept.printReports();
-acctDept.printEmployeeInformation();
+acctDept.describe();
 acctDept.addEmployee("Test1");
 acctDept.addEmployee("Rommel");
 acctDept.printEmployeeInformation();
