@@ -1,14 +1,18 @@
 "use strict";
 let add = (n1, n2) => n1 + n2;
 class Person {
-    constructor(n, age) {
-        this.name = n;
-        this.age = age;
+    constructor(n) {
+        if (n)
+            this.name = n;
+        this.age = 32;
     }
     greet(phrase) {
-        console.log(`${phrase} ${this.name}`);
+        if (this.name)
+            console.log(`${phrase} ${this.name}`);
+        else
+            console.log("Hi!");
     }
 }
 let user1;
-user1 = new Person("Rommel", 32);
+user1 = new Person();
 user1.greet("Hi, there I am");
