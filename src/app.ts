@@ -18,5 +18,6 @@ class Person implements Greetable {
 
 }
 
-const user1: Person = new Person("Rommel", 32);
+let user1: Greetable;
+user1 = new Person("Rommel", 32);
 user1.greet("Hi, there I am");

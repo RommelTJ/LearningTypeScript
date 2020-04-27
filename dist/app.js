@@ -8,5 +8,6 @@ class Person {
         console.log(`${phrase} ${this.name}`);
     }
 }
-const user1 = new Person("Rommel", 32);
+let user1;
+user1 = new Person("Rommel", 32);
 user1.greet("Hi, there I am");
