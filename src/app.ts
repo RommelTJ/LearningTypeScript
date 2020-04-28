@@ -20,3 +20,11 @@ type Combineable = string | number;
 type Numeric = number | boolean;
 
 type Universal = Combineable & Numeric; // number type because the intersection of union types is number.
+
+// type guard
+function add(a: Combineable, b: Combineable) {
+  if (typeof a === 'string' || typeof b === 'string') {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
