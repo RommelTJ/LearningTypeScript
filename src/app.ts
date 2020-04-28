@@ -15,3 +15,8 @@ const e1: ElevatedEmployee = {
   privileges: ["create-server"],
   startDate: new Date()
 };
+
+type Combineable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combineable & Numeric; // number type because the intersection of union types is number.
