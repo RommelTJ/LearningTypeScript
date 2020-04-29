@@ -129,4 +129,10 @@ const errorBag: ErrorContainer = {
   //34: "dfsgdfsg" // ok because number can be converted to a string.
 };
 
-
+// Optional chaining
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Rommel',
+  job: { title: 'CEO', description: 'My own company' }
+};
+console.log("title: ", fetchedUserData?.job?.title);
