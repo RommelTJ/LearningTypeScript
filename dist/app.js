@@ -1,18 +1,78 @@
 "use strict";
-let add = (n1, n2) => n1 + n2;
-class Person {
-    constructor(n) {
-        if (n)
-            this.name = n;
-        this.age = 32;
+var _a;
+const e1 = {
+    name: "Rommel",
+    privileges: ["create-server"],
+    startDate: new Date()
+};
+function add(a, b) {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
     }
-    greet(phrase) {
-        if (this.name)
-            console.log(`${phrase} ${this.name}`);
-        else
-            console.log("Hi!");
+    return a + b;
+}
+const res = add("Rommel", " Rico");
+console.log("split after overload: ", res.split(' '));
+function printEmployeeInformation(emp) {
+    console.log("Name: ", emp.name);
+    if ("privileges" in emp) {
+        console.log("Privileges: ", emp.privileges);
+    }
+    if ("startDate" in emp) {
+        console.log("Start Date: ", emp.startDate);
     }
 }
-let user1;
-user1 = new Person();
-user1.greet("Hi, there I am");
+printEmployeeInformation(e1);
+class Car {
+    drive() {
+        console.log("Driving");
+    }
+}
+class Truck {
+    drive() {
+        console.log("Driving a truck...");
+    }
+    loadCargo(amount) {
+        console.log("Loading cargo...", amount);
+    }
+}
+const v1 = new Car();
+const v2 = new Truck();
+function useVehicle(vehicle) {
+    vehicle.drive();
+    if (vehicle instanceof Truck) {
+        vehicle.loadCargo(10);
+    }
+}
+useVehicle(v1);
+useVehicle(v2);
+function moveAnimal(animal) {
+    let speed;
+    switch (animal.type) {
+        case "bird":
+            speed = animal.flyingSpeed;
+            break;
+        case "horse":
+            speed = animal.runningSpeed;
+    }
+    console.log("Moving with speed: ", speed);
+}
+moveAnimal({ type: "bird", flyingSpeed: 10 });
+moveAnimal({ type: "horse", runningSpeed: 6 });
+const userInputElement = document.getElementById('user-input');
+if (userInputElement) {
+    userInputElement.value = "Hi there3!";
+}
+const errorBag = {
+    email: "Not a valid email",
+    username: "Must start with a letter"
+};
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Rommel',
+    job: { title: 'CEO', description: 'My own company' }
+};
+console.log("title: ", (_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+const userInput = '';
+const storedData = userInput !== null && userInput !== void 0 ? userInput : "DEFAULT";
+console.log("storedData: ", storedData);

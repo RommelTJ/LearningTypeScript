@@ -1,34 +1,144 @@
-interface AddFn {
-  (a: number, b: number): number;
+type Admin = {
+  name: string;
+  privileges: string[];
+};
+
+type GeneralEmployee = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & GeneralEmployee;
+
+const e1: ElevatedEmployee = {
+  name: "Rommel",
+  privileges: ["create-server"],
+  startDate: new Date()
+};
+
+type Combineable = string | number;
+type Numeric = number | boolean;
+
+type Universal = Combineable & Numeric; // number type because the intersection of union types is number.
+
+// Function Overloads
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
+// type guard
+function add(a: Combineable, b: Combineable) {
+  if (typeof a === 'string' || typeof b === 'string') {
+    return a.toString() + b.toString();
+  }
+  return a + b;
 }
 
-// type AddFn = (a: number, b: number) => number;
-let add: AddFn = (n1: number, n2: number) => n1 + n2;
+const res = add("Rommel", " Rico");
+console.log("split after overload: ", res.split(' '));
 
-interface Named {
-  readonly name?: string;
-  outputName?: string;
+type UnknownEmployee = GeneralEmployee | Admin;
+
+// Second kind of Type Guard
+function printEmployeeInformation(emp: UnknownEmployee) {
+  console.log("Name: ", emp.name);
+  if ("privileges" in emp) {
+    console.log("Privileges: ", emp.privileges);
+  }
+  if ("startDate" in emp) {
+    console.log("Start Date: ", emp.startDate);
+  }
 }
-interface Greetable extends Named {
-  greet(phrase: string): void;
+
+printEmployeeInformation(e1);
+
+class Car {
+  drive() {
+    console.log("Driving");
+  }
 }
 
-class Person implements Greetable {
-  name?: string;
-  age: number;
-
-  constructor(n?: string) {
-    if (n) this.name = n;
-    this.age = 32;
+class Truck {
+  drive() {
+    console.log("Driving a truck...");
   }
 
-  greet(phrase: string) {
-    if (this.name) console.log(`${phrase} ${this.name}`);
-    else console.log("Hi!");
+  loadCargo(amount: number) {
+    console.log("Loading cargo...", amount);
   }
-
 }
 
-let user1: Greetable;
-user1 = new Person();
-user1.greet("Hi, there I am");
+type Vehicle = Car | Truck;
+
+const v1 = new Car();
+const v2 = new Truck();
+
+// A third kind of Type Guard
+function useVehicle(vehicle: Vehicle) {
+  vehicle.drive();
+  if (vehicle instanceof Truck) {
+    vehicle.loadCargo(10);
+  }
+}
+
+useVehicle(v1);
+useVehicle(v2);
+
+// Discriminated Union Pattern
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+// Discriminated Union
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log("Moving with speed: ", speed);
+}
+
+moveAnimal({type: "bird", flyingSpeed: 10});
+moveAnimal({type: "horse", runningSpeed: 6});
+
+// const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+const userInputElement = document.getElementById('user-input');
+if (userInputElement) {
+  (userInputElement as HTMLInputElement).value = "Hi there3!";
+}
+
+// Index properties
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must start with a letter"
+  //34: "dfsgdfsg" // ok because number can be converted to a string.
+};
+
+// Optional chaining
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Rommel',
+  job: { title: 'CEO', description: 'My own company' }
+};
+console.log("title: ", fetchedUserData?.job?.title);
+
+// Nullish Coalescing
+const userInput = '';
+// const storedData = userInput || "DEFAULT"; // '' is falsy, so prints "DEFAULT"
+const storedData = userInput ?? "DEFAULT"; // '' is not null, so prints userInput
+console.log("storedData: ", storedData);
