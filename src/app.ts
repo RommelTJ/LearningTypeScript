@@ -136,3 +136,9 @@ const fetchedUserData = {
   job: { title: 'CEO', description: 'My own company' }
 };
 console.log("title: ", fetchedUserData?.job?.title);
+
+// Nullish Coalescing
+const userInput = '';
+// const storedData = userInput || "DEFAULT"; // '' is falsy, so prints "DEFAULT"
+const storedData = userInput ?? "DEFAULT"; // '' is not null, so prints userInput
+console.log("storedData: ", storedData);
