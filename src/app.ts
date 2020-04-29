@@ -105,4 +105,5 @@ function moveAnimal(animal: Animal) {
 moveAnimal({type: "bird", flyingSpeed: 10});
 moveAnimal({type: "horse", runningSpeed: 6});
 
-const userInputElement = document.getElementById('user-input'); // Doesn't know it's an Input Element
+const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+userInputElement.value = "Hi there!";
