@@ -110,3 +110,14 @@ const userInputElement = document.getElementById('user-input');
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = "Hi there3!";
 }
+
+// Index properties
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  username: "Must start with a letter"
+  //34: "dfsgdfsg" // ok because number can be converted to a string.
+};

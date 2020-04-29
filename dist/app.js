@@ -60,3 +60,7 @@ const userInputElement = document.getElementById('user-input');
 if (userInputElement) {
     userInputElement.value = "Hi there3!";
 }
+const errorBag = {
+    email: "Not a valid email",
+    username: "Must start with a letter"
+};
