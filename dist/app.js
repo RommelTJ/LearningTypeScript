@@ -10,6 +10,8 @@ function add(a, b) {
     }
     return a + b;
 }
+const res = add("Rommel", " Rico");
+console.log("split after overload: ", res.split(' '));
 function printEmployeeInformation(emp) {
     console.log("Name: ", emp.name);
     if ("privileges" in emp) {

@@ -21,6 +21,10 @@ type Numeric = number | boolean;
 
 type Universal = Combineable & Numeric; // number type because the intersection of union types is number.
 
+// Function Overloads
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
 // type guard
 function add(a: Combineable, b: Combineable) {
   if (typeof a === 'string' || typeof b === 'string') {
@@ -28,6 +32,9 @@ function add(a: Combineable, b: Combineable) {
   }
   return a + b;
 }
+
+const res = add("Rommel", " Rico");
+console.log("split after overload: ", res.split(' '));
 
 type UnknownEmployee = GeneralEmployee | Admin;
 
@@ -121,3 +128,5 @@ const errorBag: ErrorContainer = {
   username: "Must start with a letter"
   //34: "dfsgdfsg" // ok because number can be converted to a string.
 };
+
+
