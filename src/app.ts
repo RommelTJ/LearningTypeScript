@@ -16,7 +16,16 @@
 function merge<T, U>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
-const mergedObj = merge({name: "Rommel"}, {age: 32});
+
+type Person = {
+  name: string;
+  hobbies: string[];
+}
+type PersonAge = {
+  age: number;
+}
+const mergedObj = merge<Person, PersonAge>({name: "Rommel", hobbies: ['Sports']}, {age: 32});
 console.log(mergedObj);
 console.log("name: ", mergedObj.name);
+console.log("hobbies: ", mergedObj.hobbies);
 console.log("age: ", mergedObj.age);
