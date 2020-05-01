@@ -13,9 +13,10 @@
 // });
 
 // Generic Function
-function merge(objA: object, objB: object) {
+function merge<T, U>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 const mergedObj = merge({name: "Rommel"}, {age: 32});
-// mergedObj.name; // Can't do this.
 console.log(mergedObj);
+console.log("name: ", mergedObj.name);
+console.log("age: ", mergedObj.age);
