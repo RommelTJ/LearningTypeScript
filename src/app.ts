@@ -100,3 +100,7 @@ const names: Readonly<string[]> = ["Rommel", "Anna"];
 // names.pop(); // error - not allowed
 console.log(names);
 // You can also use Readonly with objects
+
+// If you replaced a Generic class with Union Types you would be able to mix types and that's not what we want.
+// Generic Types "lock-in" a type.
+// Union Types "mix-in" types.
