@@ -94,3 +94,9 @@ function createCourseGoal(title: string, description: string, date: Date): Cours
 }
 
 console.log("Goal: ", createCourseGoal("Test1", "test2", new Date()));
+
+const names: Readonly<string[]> = ["Rommel", "Anna"];
+// names.push("Liza"); // error - not allowed
+// names.pop(); // error - not allowed
+console.log(names);
+// You can also use Readonly with objects

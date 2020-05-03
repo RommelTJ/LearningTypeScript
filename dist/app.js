@@ -54,3 +54,5 @@ function createCourseGoal(title, description, date) {
     return courseGoal;
 }
 console.log("Goal: ", createCourseGoal("Test1", "test2", new Date()));
+const names = ["Rommel", "Anna"];
+console.log(names);
