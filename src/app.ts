@@ -36,3 +36,9 @@ console.log(countAndDescribe("Hi there!"));
 console.log(countAndDescribe(""));
 console.log(countAndDescribe("1"));
 console.log(countAndDescribe([0, 1, 3]));
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
+
+console.log(extractAndConvert({test: 1, name: "sdg"}, "name"));
