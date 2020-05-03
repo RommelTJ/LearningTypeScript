@@ -46,3 +46,11 @@ numberStorage.addItem(1);
 numberStorage.addItem(2);
 numberStorage.removeItem(1);
 console.log(numberStorage.getItems());
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+}
+console.log("Goal: ", createCourseGoal("Test1", "test2", new Date()));
