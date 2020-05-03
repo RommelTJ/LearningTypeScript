@@ -1,78 +1,58 @@
 "use strict";
-var _a;
-const e1 = {
-    name: "Rommel",
-    privileges: ["create-server"],
-    startDate: new Date()
-};
-function add(a, b) {
-    if (typeof a === 'string' || typeof b === 'string') {
-        return a.toString() + b.toString();
-    }
-    return a + b;
+function merge(objA, objB) {
+    return Object.assign(objA, objB);
 }
-const res = add("Rommel", " Rico");
-console.log("split after overload: ", res.split(' '));
-function printEmployeeInformation(emp) {
-    console.log("Name: ", emp.name);
-    if ("privileges" in emp) {
-        console.log("Privileges: ", emp.privileges);
-    }
-    if ("startDate" in emp) {
-        console.log("Start Date: ", emp.startDate);
-    }
+const mergedObj = merge({ name: "Rommel", hobbies: ['Sports'] }, { age: 30 });
+console.log(mergedObj);
+function countAndDescribe(element) {
+    let descriptionText = "Got not value.";
+    if (element.length === 1)
+        descriptionText = `Got 1 element`;
+    if (element.length > 1)
+        descriptionText = `Got ${element.length} elements`;
+    return [element, descriptionText];
 }
-printEmployeeInformation(e1);
-class Car {
-    drive() {
-        console.log("Driving");
-    }
+console.log(countAndDescribe("Hi there!"));
+console.log(countAndDescribe(""));
+console.log(countAndDescribe("1"));
+console.log(countAndDescribe([0, 1, 3]));
+function extractAndConvert(obj, key) {
+    return obj[key];
 }
-class Truck {
-    drive() {
-        console.log("Driving a truck...");
+console.log(extractAndConvert({ test: 1, name: "sdg" }, "name"));
+class DataStorage {
+    constructor() {
+        this.data = [];
     }
-    loadCargo(amount) {
-        console.log("Loading cargo...", amount);
+    addItem(item) {
+        this.data.push(item);
     }
-}
-const v1 = new Car();
-const v2 = new Truck();
-function useVehicle(vehicle) {
-    vehicle.drive();
-    if (vehicle instanceof Truck) {
-        vehicle.loadCargo(10);
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1)
+            return;
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
     }
 }
-useVehicle(v1);
-useVehicle(v2);
-function moveAnimal(animal) {
-    let speed;
-    switch (animal.type) {
-        case "bird":
-            speed = animal.flyingSpeed;
-            break;
-        case "horse":
-            speed = animal.runningSpeed;
-    }
-    console.log("Moving with speed: ", speed);
+const textStorage = new DataStorage();
+textStorage.addItem("My String");
+textStorage.addItem("Rommel");
+textStorage.removeItem("My String");
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
+numberStorage.addItem(1);
+numberStorage.addItem(2);
+numberStorage.removeItem(1);
+console.log(numberStorage.getItems());
+function createCourseGoal(title, description, date) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
 }
-moveAnimal({ type: "bird", flyingSpeed: 10 });
-moveAnimal({ type: "horse", runningSpeed: 6 });
-const userInputElement = document.getElementById('user-input');
-if (userInputElement) {
-    userInputElement.value = "Hi there3!";
-}
-const errorBag = {
-    email: "Not a valid email",
-    username: "Must start with a letter"
-};
-const fetchedUserData = {
-    id: 'u1',
-    name: 'Rommel',
-    job: { title: 'CEO', description: 'My own company' }
-};
-console.log("title: ", (_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
-const userInput = '';
-const storedData = userInput !== null && userInput !== void 0 ? userInput : "DEFAULT";
-console.log("storedData: ", storedData);
+console.log("Goal: ", createCourseGoal("Test1", "test2", new Date()));
+const names = ["Rommel", "Anna"];
+console.log(names);

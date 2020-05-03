@@ -1,144 +1,106 @@
-type Admin = {
-  name: string;
-  privileges: string[];
-};
+// Generics
+// const names: Array<string> = ["Rommel", "Liza"];
+// const names: string[] = ["Rommel", "Liza"]; // equivalent
+//
+// const promise: Promise<string> = new Promise((resolve) => {
+//   setTimeout(() => {
+//     resolve("This is done!")
+//   }, 2000);
+// });
+//
+// promise.then(data => {
+//   data.split(' '); // we can do this because TypeScript knows it will yield a string
+// });
 
-type GeneralEmployee = {
-  name: string;
-  startDate: Date;
-};
-
-type ElevatedEmployee = Admin & GeneralEmployee;
-
-const e1: ElevatedEmployee = {
-  name: "Rommel",
-  privileges: ["create-server"],
-  startDate: new Date()
-};
-
-type Combineable = string | number;
-type Numeric = number | boolean;
-
-type Universal = Combineable & Numeric; // number type because the intersection of union types is number.
-
-// Function Overloads
-function add(a: number, b: number): number;
-function add(a: string, b: string): string;
-
-// type guard
-function add(a: Combineable, b: Combineable) {
-  if (typeof a === 'string' || typeof b === 'string') {
-    return a.toString() + b.toString();
-  }
-  return a + b;
+// Generic Function
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
 }
 
-const res = add("Rommel", " Rico");
-console.log("split after overload: ", res.split(' '));
+const mergedObj = merge({name: "Rommel", hobbies: ['Sports']}, {age: 30});
+console.log(mergedObj);
 
-type UnknownEmployee = GeneralEmployee | Admin;
-
-// Second kind of Type Guard
-function printEmployeeInformation(emp: UnknownEmployee) {
-  console.log("Name: ", emp.name);
-  if ("privileges" in emp) {
-    console.log("Privileges: ", emp.privileges);
-  }
-  if ("startDate" in emp) {
-    console.log("Start Date: ", emp.startDate);
-  }
+interface Lengthy {
+  length: number;
 }
 
-printEmployeeInformation(e1);
-
-class Car {
-  drive() {
-    console.log("Driving");
-  }
+// Returning a Tuple.
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got not value.";
+  if (element.length === 1) descriptionText = `Got 1 element`;
+  if (element.length > 1) descriptionText = `Got ${element.length} elements`;
+  return [element, descriptionText];
 }
 
-class Truck {
-  drive() {
-    console.log("Driving a truck...");
+console.log(countAndDescribe("Hi there!"));
+console.log(countAndDescribe(""));
+console.log(countAndDescribe("1"));
+console.log(countAndDescribe([0, 1, 3]));
+
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
+
+console.log(extractAndConvert({test: 1, name: "sdg"}, "name"));
+
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
   }
 
-  loadCargo(amount: number) {
-    console.log("Loading cargo...", amount);
+  removeItem(item: T) {
+    if (this.data.indexOf(item) === -1) return;
+    this.data.splice(this.data.indexOf(item), 1);
   }
-}
 
-type Vehicle = Car | Truck;
-
-const v1 = new Car();
-const v2 = new Truck();
-
-// A third kind of Type Guard
-function useVehicle(vehicle: Vehicle) {
-  vehicle.drive();
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(10);
+  getItems() {
+    return [...this.data];
   }
+
 }
 
-useVehicle(v1);
-useVehicle(v2);
+const textStorage = new DataStorage<string>();
+textStorage.addItem("My String");
+textStorage.addItem("Rommel");
+textStorage.removeItem("My String");
+console.log(textStorage.getItems());
 
-// Discriminated Union Pattern
-interface Bird {
-  type: "bird";
-  flyingSpeed: number;
+const numberStorage = new DataStorage<number>();
+numberStorage.addItem(1);
+numberStorage.addItem(2);
+numberStorage.removeItem(1);
+console.log(numberStorage.getItems());
+
+// const objectStorage = new DataStorage<object>();
+// objectStorage.addItem({name: "Rommel"});
+// objectStorage.addItem({name: "Liza"});
+// objectStorage.removeItem({name: "Rommel"});
+// console.log(objectStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
 }
 
-interface Horse {
-  type: "horse";
-  runningSpeed: number;
+function createCourseGoal(title: string, description: string, date: Date): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
 }
 
-type Animal = Bird | Horse;
+console.log("Goal: ", createCourseGoal("Test1", "test2", new Date()));
 
-// Discriminated Union
-function moveAnimal(animal: Animal) {
-  let speed;
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-  }
-  console.log("Moving with speed: ", speed);
-}
+const names: Readonly<string[]> = ["Rommel", "Anna"];
+// names.push("Liza"); // error - not allowed
+// names.pop(); // error - not allowed
+console.log(names);
+// You can also use Readonly with objects
 
-moveAnimal({type: "bird", flyingSpeed: 10});
-moveAnimal({type: "horse", runningSpeed: 6});
-
-// const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
-const userInputElement = document.getElementById('user-input');
-if (userInputElement) {
-  (userInputElement as HTMLInputElement).value = "Hi there3!";
-}
-
-// Index properties
-interface ErrorContainer {
-  [prop: string]: string;
-}
-
-const errorBag: ErrorContainer = {
-  email: "Not a valid email",
-  username: "Must start with a letter"
-  //34: "dfsgdfsg" // ok because number can be converted to a string.
-};
-
-// Optional chaining
-const fetchedUserData = {
-  id: 'u1',
-  name: 'Rommel',
-  job: { title: 'CEO', description: 'My own company' }
-};
-console.log("title: ", fetchedUserData?.job?.title);
-
-// Nullish Coalescing
-const userInput = '';
-// const storedData = userInput || "DEFAULT"; // '' is falsy, so prints "DEFAULT"
-const storedData = userInput ?? "DEFAULT"; // '' is not null, so prints userInput
-console.log("storedData: ", storedData);
+// If you replaced a Generic class with Union Types you would be able to mix types and that's not what we want.
+// Generic Types "lock-in" a type.
+// Union Types "mix-in" types.
