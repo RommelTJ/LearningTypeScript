@@ -84,3 +84,7 @@ class Product {
   }
 
 }
+
+// Decorators do behind the scenes setup work. They don't run when they execute. They're not event listeners.
+const p1 = new Product('Book 1', 10);
+const p2 = new Product('Book 2', 12);
