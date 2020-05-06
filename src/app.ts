@@ -129,12 +129,14 @@ const registeredValidators: ValidatorConfig = {};
 
 function Required(target: any, propertyName: string) {
   registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
     [propertyName]: ['required']
   };
 }
 
 function PositiveNumber(target: any, propertyName: string) {
   registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
     [propertyName]: ['positive']
   };
 }
@@ -142,15 +144,21 @@ function PositiveNumber(target: any, propertyName: string) {
 function validate(obj: any) {
   const objValidatorConfig = registeredValidators[obj.constructor.name];
   if (!objValidatorConfig) return true;
+
+  let isValid: boolean = true;
   for (const prop in objValidatorConfig) {
     for (const validator of objValidatorConfig[prop]) {
       switch (validator) {
-        case 'required': return !!obj[prop];
-        case 'positive': return obj[prop] > 0;
+        case 'required':
+          isValid = isValid && !!obj[prop];
+          break;
+        case 'positive':
+          isValid = isValid && obj[prop] > 0;
+          break;
       }
     }
   }
-  return true;
+  return isValid;
 }
 
 class Course {
