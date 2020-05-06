@@ -133,7 +133,11 @@ function Required(target: any, propertyName: string) {
   };
 }
 
-function PositiveNumber() {}
+function PositiveNumber(target: any, propertyName: string) {
+  registeredValidators[target.constructor.name] = {
+    [propertyName]: ['positive']
+  };
+}
 
 function validate(obj: object) {}
 
