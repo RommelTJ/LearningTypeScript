@@ -91,3 +91,14 @@ __decorate([
 ], Product.prototype, "getPriceWithTax", null);
 const p1 = new Product('Book 1', 10);
 const p2 = new Product('Book 2', 12);
+class Printer {
+    constructor() {
+        this.message = "This works";
+    }
+    showMessage() {
+        console.log(this.message);
+    }
+}
+const p = new Printer();
+const button = document.querySelector('button');
+button.addEventListener('click', p.showMessage.bind(p));

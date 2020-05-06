@@ -92,3 +92,16 @@ class Product {
 // Decorators do behind the scenes setup work. They don't run when they execute. They're not event listeners.
 const p1 = new Product('Book 1', 10);
 const p2 = new Product('Book 2', 12);
+
+class Printer {
+  message = "This works";
+
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+
+const button = document.querySelector('button')!;
+button.addEventListener('click', p.showMessage.bind(p));
