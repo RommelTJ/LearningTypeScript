@@ -119,6 +119,12 @@ const p = new Printer();
 const button = document.querySelector('button')!;
 button.addEventListener('click', p.showMessage);
 
+interface ValidatorConfig {
+  [property: string]: {
+    [validateableProp: string]: string[]; // ['required', 'positive']
+  };
+}
+
 function Required() {}
 
 function PositiveNumber() {}
