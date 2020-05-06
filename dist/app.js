@@ -116,12 +116,43 @@ __decorate([
 const p = new Printer();
 const button = document.querySelector('button');
 button.addEventListener('click', p.showMessage);
+const registeredValidators = {};
+function Required(target, propertyName) {
+    registeredValidators[target.constructor.name] = {
+        [propertyName]: ['required']
+    };
+}
+function PositiveNumber(target, propertyName) {
+    registeredValidators[target.constructor.name] = {
+        [propertyName]: ['positive']
+    };
+}
+function validate(obj) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    if (!objValidatorConfig)
+        return true;
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case 'required': return !!obj[prop];
+                case 'positive': return obj[prop] > 0;
+            }
+        }
+    }
+    return true;
+}
 class Course {
     constructor(t, p) {
         this.title = t;
         this.price = p;
     }
 }
+__decorate([
+    Required
+], Course.prototype, "title", void 0);
+__decorate([
+    PositiveNumber
+], Course.prototype, "price", void 0);
 const courseForm = document.querySelector('form');
 courseForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -130,5 +161,9 @@ courseForm.addEventListener('submit', (event) => {
     const title = titleEl.value;
     const price = +priceEl.value;
     const createdCourse = new Course(title, price);
+    if (!validate(createdCourse)) {
+        alert("Invalid Input, please try again!");
+        return;
+    }
     console.log(createdCourse);
 });
