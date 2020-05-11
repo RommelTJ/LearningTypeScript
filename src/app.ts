@@ -17,3 +17,5 @@ class ProjectInput {
   }
 
 }
+
+const projectInput = new ProjectInput();
