@@ -13,6 +13,8 @@ class ProjectState {
   }
 }
 
+const projectState = new ProjectState();
+
 // autobind decorator
 function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;

@@ -19,6 +19,7 @@ class ProjectState {
         this.projects.push(newProject);
     }
 }
+const projectState = new ProjectState();
 function autobind(_, _2, descriptor) {
     const originalMethod = descriptor.value;
     const adjustedDescriptor = {
