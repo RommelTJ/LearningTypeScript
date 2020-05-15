@@ -25,7 +25,7 @@ class ProjectState {
   }
 }
 
-const projectState = new ProjectState();
+const projectState = ProjectState.getInstance();
 
 // autobind decorator
 function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
