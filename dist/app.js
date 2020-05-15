@@ -9,6 +9,13 @@ class ProjectState {
     constructor() {
         this.projects = [];
     }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance;
+        }
+        this.instance = new ProjectState();
+        return this.instance;
+    }
     addProject(title, description, numOfPeople) {
         const newProject = {
             id: Math.random().toString(),
@@ -19,7 +26,7 @@ class ProjectState {
         this.projects.push(newProject);
     }
 }
-const projectState = new ProjectState();
+const projectState = ProjectState.getInstance();
 function autobind(_, _2, descriptor) {
     const originalMethod = descriptor.value;
     const adjustedDescriptor = {
@@ -108,7 +115,7 @@ class ProjectInput {
         const userInput = this.gatherUserInput();
         if (Array.isArray(userInput)) {
             const [title, description, people] = userInput;
-            console.log(title, description, people);
+            projectState.addProject(title, description, people);
             this.clearInputs();
         }
     }
