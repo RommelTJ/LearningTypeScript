@@ -1,3 +1,18 @@
+// Project State Management
+class ProjectState {
+  private projects: any[] = [];
+
+  addProject(title: string, description: string, numOfPeople: number) {
+    const newProject = {
+      id: Math.random().toString(),
+      title: title,
+      description: description,
+      people: numOfPeople
+    };
+    this.projects.push(newProject);
+  }
+}
+
 // autobind decorator
 function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
