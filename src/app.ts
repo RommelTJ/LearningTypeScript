@@ -1,5 +1,6 @@
 // Project State Management
 class ProjectState {
+  private listeners: any[] = [];
   private projects: any[] = [];
   private static instance: ProjectState;
 
@@ -13,6 +14,9 @@ class ProjectState {
     return this.instance;
   }
 
+  addListener(listenerFn: Function) {
+    this.listeners.push(listenerFn);
+  }
 
   addProject(title: string, description: string, numOfPeople: number) {
     const newProject = {
@@ -22,6 +26,9 @@ class ProjectState {
       people: numOfPeople
     };
     this.projects.push(newProject);
+    for (const listenerFn of this.listeners) {
+      listenerFn(this.projects.slice());
+    }
   }
 }
 
