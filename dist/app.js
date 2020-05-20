@@ -7,21 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var App;
 (function (App) {
-    let ProjectStatus;
-    (function (ProjectStatus) {
-        ProjectStatus[ProjectStatus["Active"] = 0] = "Active";
-        ProjectStatus[ProjectStatus["Finished"] = 1] = "Finished";
-    })(ProjectStatus || (ProjectStatus = {}));
-    class Project {
-        constructor(id, title, description, people, status) {
-            this.id = id;
-            this.title = title;
-            this.description = description;
-            this.people = people;
-            this.status = status;
-        }
-        ;
-    }
     class State {
         constructor() {
             this.listeners = [];
@@ -43,7 +28,7 @@ var App;
             return this.instance;
         }
         addProject(title, description, numOfPeople) {
-            const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.Active);
+            const newProject = new App.Project(Math.random().toString(), title, description, numOfPeople, App.ProjectStatus.Active);
             this.projects.push(newProject);
             this.updateListeners();
         }
@@ -148,8 +133,8 @@ var App;
             projectState.addListener((projects) => {
                 this.assignedProjects = projects.filter((project) => {
                     if (this.type === "active")
-                        return project.status === ProjectStatus.Active;
-                    return project.status === ProjectStatus.Finished;
+                        return project.status === App.ProjectStatus.Active;
+                    return project.status === App.ProjectStatus.Finished;
                 });
                 this.renderProjects();
             });
@@ -176,7 +161,7 @@ var App;
         dropHandler(event) {
             event.preventDefault();
             const projectId = event.dataTransfer.getData("text/plain");
-            projectState.moveProject(projectId, this.type === 'active' ? ProjectStatus.Active : ProjectStatus.Finished);
+            projectState.moveProject(projectId, this.type === 'active' ? App.ProjectStatus.Active : App.ProjectStatus.Finished);
         }
         renderProjects() {
             const listEl = document.getElementById(`${this.type}-projects-list`);
