@@ -1,5 +1,5 @@
-/// <reference path="drag-drop-interfaces.ts" />
-/// <reference path="project-model.ts" />
+/// <reference path="models/drag-drop.ts" />
+/// <reference path="models/project.ts" />
 /// <reference path="project-state.ts" />
 /// <reference path="validation.ts" />
 /// <reference path="decorators/autobind.ts" />
