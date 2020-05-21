@@ -2,22 +2,10 @@
 /// <reference path="project-model.ts" />
 /// <reference path="project-state.ts" />
 /// <reference path="validation.ts" />
+/// <reference path="autobind-decorator.ts" />
 
 namespace App {
-  // autobind decorator
-  function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value;
-    const adjustedDescriptor = {
-      configurable: true,
-      get() {
-        const boundFn = originalMethod.bind(this);
-        return boundFn;
-      }
-    };
-    return adjustedDescriptor;
-  }
-
-// Component Base Class
+  // Component Base Class
   abstract class Component<T extends HTMLElement, U extends HTMLElement> {
     templateElement: HTMLTemplateElement;
     hostElement: T;
@@ -45,7 +33,7 @@ namespace App {
 
   }
 
-// ProjectItem class
+  // ProjectItem class
   class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> implements Draggable {
     private project: Project;
 
@@ -82,7 +70,7 @@ namespace App {
     }
   }
 
-// ProjectList Class
+  // ProjectList Class
   class ProjectList extends Component<HTMLDivElement, HTMLElement> implements DragTarget {
     assignedProjects: Project[];
 
@@ -147,7 +135,7 @@ namespace App {
 
   }
 
-// ProjectInput Class
+  // ProjectInput Class
   class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     titleInputElement: HTMLInputElement;
     descriptionInputElement: HTMLInputElement;
