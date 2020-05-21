@@ -156,6 +156,10 @@ var App;
     __decorate([
         App.autobind
     ], ProjectItem.prototype, "dragStartHandler", null);
+    App.ProjectItem = ProjectItem;
+})(App || (App = {}));
+var App;
+(function (App) {
     class ProjectList extends App.Component {
         constructor(type) {
             super("project-list", "app", false, `${type}-projects`);
@@ -202,7 +206,7 @@ var App;
             const listEl = document.getElementById(`${this.type}-projects-list`);
             listEl.innerHTML = '';
             for (const projectItem of this.assignedProjects) {
-                new ProjectItem(this.element.querySelector('ul').id, projectItem);
+                new App.ProjectItem(this.element.querySelector('ul').id, projectItem);
             }
         }
     }
@@ -215,6 +219,10 @@ var App;
     __decorate([
         App.autobind
     ], ProjectList.prototype, "dropHandler", null);
+    App.ProjectList = ProjectList;
+})(App || (App = {}));
+var App;
+(function (App) {
     class ProjectInput extends App.Component {
         constructor() {
             super("project-input", "app", true, "user-input");
@@ -261,6 +269,6 @@ var App;
         App.autobind
     ], ProjectInput.prototype, "submitHandler", null);
     new ProjectInput();
-    new ProjectList('active');
-    new ProjectList('finished');
+    new App.ProjectList('active');
+    new App.ProjectList('finished');
 })(App || (App = {}));
