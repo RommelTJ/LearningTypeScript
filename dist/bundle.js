@@ -69,17 +69,6 @@ var App;
 })(App || (App = {}));
 var App;
 (function (App) {
-    function autobind(_, _2, descriptor) {
-        const originalMethod = descriptor.value;
-        const adjustedDescriptor = {
-            configurable: true,
-            get() {
-                const boundFn = originalMethod.bind(this);
-                return boundFn;
-            }
-        };
-        return adjustedDescriptor;
-    }
     function validate(validatableInput) {
         let isValid = true;
         if (validatableInput.required) {
@@ -98,6 +87,21 @@ var App;
             isValid = isValid && validatableInput.value <= validatableInput.max;
         }
         return isValid;
+    }
+    App.validate = validate;
+})(App || (App = {}));
+var App;
+(function (App) {
+    function autobind(_, _2, descriptor) {
+        const originalMethod = descriptor.value;
+        const adjustedDescriptor = {
+            configurable: true,
+            get() {
+                const boundFn = originalMethod.bind(this);
+                return boundFn;
+            }
+        };
+        return adjustedDescriptor;
     }
     class Component {
         constructor(templateId, hostElementId, insertAtStart, newElementId) {
@@ -222,7 +226,7 @@ var App;
             const titleValidatable = { value: enteredTitle, required: true };
             const descriptionValidatable = { value: enteredDescription, required: true, minLength: 5 };
             const peopleValidatable = { value: +enteredPeople, required: true, min: 1 };
-            if (!validate(titleValidatable) || !validate(descriptionValidatable) || !validate(peopleValidatable)) {
+            if (!App.validate(titleValidatable) || !App.validate(descriptionValidatable) || !App.validate(peopleValidatable)) {
                 alert("Invalid input, please try again!");
                 return;
             }
