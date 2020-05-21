@@ -64,7 +64,11 @@ var App;
             }
         }
     }
-    const projectState = ProjectState.getInstance();
+    App.ProjectState = ProjectState;
+    App.projectState = ProjectState.getInstance();
+})(App || (App = {}));
+var App;
+(function (App) {
     function autobind(_, _2, descriptor) {
         const originalMethod = descriptor.value;
         const adjustedDescriptor = {
@@ -149,7 +153,7 @@ var App;
             this.renderContent();
         }
         configure() {
-            projectState.addListener((projects) => {
+            App.projectState.addListener((projects) => {
                 this.assignedProjects = projects.filter((project) => {
                     if (this.type === "active")
                         return project.status === App.ProjectStatus.Active;
@@ -180,7 +184,7 @@ var App;
         dropHandler(event) {
             event.preventDefault();
             const projectId = event.dataTransfer.getData("text/plain");
-            projectState.moveProject(projectId, this.type === 'active' ? App.ProjectStatus.Active : App.ProjectStatus.Finished);
+            App.projectState.moveProject(projectId, this.type === 'active' ? App.ProjectStatus.Active : App.ProjectStatus.Finished);
         }
         renderProjects() {
             const listEl = document.getElementById(`${this.type}-projects-list`);
@@ -236,7 +240,7 @@ var App;
             const userInput = this.gatherUserInput();
             if (Array.isArray(userInput)) {
                 const [title, description, people] = userInput;
-                projectState.addProject(title, description, people);
+                App.projectState.addProject(title, description, people);
                 this.clearInputs();
             }
         }
