@@ -14,5 +14,8 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   }
 }
