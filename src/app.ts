@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { plainToClass } from 'class-transformer';
+import { plainToClass } from "class-transformer";
 import Product from "./product.model";
 
 const products = [{title: "A Carpet", price: 29.99}, {title: "A Book", price: 10.99}];
