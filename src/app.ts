@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import Product from "./product.model";
 
 const products = [{title: "A Carpet", price: 29.99}, {title: "A Book", price: 10.99}];
