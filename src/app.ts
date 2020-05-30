@@ -16,7 +16,7 @@ for (const p of loadedProducts) {
   console.log(p.getInformation());
 }
 
-const newProduct = new Product('', -5.99);
+const newProduct = new Product('sdg', 5.99);
 validate(newProduct).then(errors => {
   if (errors.length > 0) {
     console.log("errors: ", errors);
