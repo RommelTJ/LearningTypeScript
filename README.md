@@ -1,6 +1,6 @@
 # Learning TypeScript
 
-Version: 1.0.12 - 30 May 2020
+Version: 1.0.13 - 1 Jun 2020
 
 ## Description
 

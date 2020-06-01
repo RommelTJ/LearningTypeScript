@@ -1,36 +1,42 @@
-import "reflect-metadata";
-import { plainToClass } from "class-transformer";
-import { validate } from "class-validator";
-import Product from "./product.model";
+import axios from "axios";
 
-const products = [{title: "A Carpet", price: 29.99}, {title: "A Book", price: 10.99}];
+const form = document.querySelector("form")!;
+const addressInput = document.getElementById("address")! as HTMLInputElement;
 
-// const p1 = new Product('A Book', 12.99);
+const GOOGLE_API_KEY = "<REDACTED>";
 
-// const loadedProducts = products.map(p => {
-//   return new Product(p.title, p.price);
-// })
-
-const loadedProducts = plainToClass(Product, products);
-for (const p of loadedProducts) {
-  console.log(p.getInformation());
+type GoogleGeocodingResponse = {
+  results: {
+    geometry: {
+      location: {lat: number, lng: number}
+    }
+  }[],
+  status: 'OK' | 'ZERO_RESULTS';
 }
 
-const newProduct = new Product('sdg', 5.99);
-validate(newProduct).then(errors => {
-  if (errors.length > 0) {
-    console.log("errors: ", errors);
-  } else {
-    console.log("newProduct: ", newProduct.getInformation());
-  }
-});
+function searchAddressHandler(event: Event) {
+  event.preventDefault();
+  const enteredAddress = addressInput.value;
+  const encodedAddress = encodeURI(enteredAddress);
 
-// import _ from 'lodash';
-// import {ProjectList} from "./components/project-list";
-// import {ProjectInput} from "./components/project-input";
-//
-// new ProjectInput();
-// new ProjectList('active');
-// new ProjectList('finished');
-//
-// console.log(_.shuffle([1, 2, 3]));
+  // send this to Google's API.
+  axios
+    .get<GoogleGeocodingResponse>(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${GOOGLE_API_KEY}`)
+    .then(response => {
+      if (response.data.status !== "OK") {
+        throw new Error("Could not fetch location!");
+      }
+      const coordinates = response.data.results[0].geometry.location;
+      const map = new google.maps.Map(document.getElementById('map')! as HTMLDivElement, {
+        center: coordinates,
+        zoom: 16
+      });
+      new google.maps.Marker({position: coordinates, map: map});
+    })
+    .catch(err => {
+      alert(err.message);
+      console.log(err);
+    })
+}
+
+form.addEventListener("submit", searchAddressHandler);
