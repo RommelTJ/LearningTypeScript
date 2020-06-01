@@ -5,6 +5,14 @@ const addressInput = document.getElementById("address")! as HTMLInputElement;
 
 const GOOGLE_API_KEY = "<REDACTED>";
 
+type GoogleGeocodingResponse = {
+  results: {
+    geometry: {
+      location: {lat: number, lng: number}
+    }
+  }[]
+}
+
 function searchAddressHandler(event: Event) {
   event.preventDefault();
   const enteredAddress = addressInput.value;
@@ -12,9 +20,10 @@ function searchAddressHandler(event: Event) {
 
   // send this to Google's API.
   axios
-    .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${GOOGLE_API_KEY}`)
+    .get<GoogleGeocodingResponse>(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${GOOGLE_API_KEY}`)
     .then(response => {
-      console.log(response);
+      const coordinates = response.data.results[0].geometry.location;
+
     })
     .catch(err => {
       console.log(err);
