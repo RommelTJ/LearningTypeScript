@@ -10,7 +10,8 @@ type GoogleGeocodingResponse = {
     geometry: {
       location: {lat: number, lng: number}
     }
-  }[]
+  }[],
+  status: 'OK' | 'ZERO_RESULTS';
 }
 
 function searchAddressHandler(event: Event) {
@@ -23,7 +24,6 @@ function searchAddressHandler(event: Event) {
     .get<GoogleGeocodingResponse>(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${GOOGLE_API_KEY}`)
     .then(response => {
       const coordinates = response.data.results[0].geometry.location;
-
     })
     .catch(err => {
       console.log(err);
