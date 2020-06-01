@@ -29,8 +29,8 @@ function searchAddressHandler(event: Event) {
       }
       const coordinates = response.data.results[0].geometry.location;
       const map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+        center: coordinates,
+        zoom: 16
       });
       new google.maps.Marker({position: coordinates, map: map});
     })
