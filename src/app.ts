@@ -23,9 +23,13 @@ function searchAddressHandler(event: Event) {
   axios
     .get<GoogleGeocodingResponse>(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${GOOGLE_API_KEY}`)
     .then(response => {
+      if (response.data.status !== "OK") {
+        throw new Error("Could not fetch location!");
+      }
       const coordinates = response.data.results[0].geometry.location;
     })
     .catch(err => {
+      alert(err.message);
       console.log(err);
     })
 }
