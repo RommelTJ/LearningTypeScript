@@ -17,7 +17,7 @@
     "typescript": "^3.9.3",
     "webpack": "^5.105.1",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^5.2.4"
+    "webpack-dev-server": "^5.2.6"
   },
   "dependencies": {
     "@types/googlemaps": "^3.39.6",
